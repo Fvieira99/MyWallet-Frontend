@@ -6,6 +6,8 @@ import { createGlobalStyle } from "styled-components";
 import Login from "../pages/Login";
 import SignUp from "../pages/SignUp";
 import Home from "../pages/Home";
+import NewExit from "../pages/NewExit";
+import NewEntry from "../pages/NewEntry";
 function App() {
 	return (
 		<BrowserRouter>
@@ -14,8 +16,8 @@ function App() {
 				<Route path="/" element={<Login />}></Route>
 				<Route path="/cadastro" element={<SignUp />}></Route>
 				<Route path="/home" element={<Home />}></Route>
-				<Route path="/deposito"></Route>
-				<Route path="/saque"></Route>
+				<Route path="/entry" element={<NewEntry />}></Route>
+				<Route path="/exit" element={<NewExit />}></Route>
 			</Routes>
 		</BrowserRouter>
 	);

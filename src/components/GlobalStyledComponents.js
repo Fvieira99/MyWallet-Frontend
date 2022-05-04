@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export { Form, Input, Button, Logo, Span };
+export { Form, Input, Button, Logo, Span, Header };
 
 const Form = styled.form`
 	width: 90%;
@@ -60,4 +60,25 @@ const Span = styled.span`
 	text-decoration-line: underline;
 	color: #ffffff;
 	cursor: pointer;
+`;
+
+const Header = styled.header`
+	width: 90%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 10px;
+
+	h1 {
+		font-style: normal;
+		font-weight: 700;
+		font-size: 26px;
+		line-height: 31px;
+		color: #ffffff;
+	}
+
+	#logout {
+		font-size: 24px;
+		color: #ffffff;
+	}
 `;

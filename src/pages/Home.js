@@ -1,12 +1,37 @@
 //Dependencies
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { RiLogoutBoxRLine } from "react-icons/ri";
 import { AiOutlinePlusCircle, AiOutlineMinusCircle } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 //Services
+//Components
+import { Header } from "../components/GlobalStyledComponents";
+
+const transactions = [
+	{ date: "21/10", name: "Empréstimo", type: "exit", value: "2900,00" },
+	{ date: "21/10", name: "Empréstimo", type: "exit", value: "2900,00" },
+];
 
 export default function Home() {
+	function showTransactions() {
+		return (
+			<Transactions length={transactions.length}>
+				{transactions.map((transaction, index) => {
+					return (
+						<Transaction>
+							<div>
+								<Date>{transaction.date}</Date>
+								<TransactionName>{transaction.name}</TransactionName>
+							</div>
+							<Value>{transaction.value}</Value>
+						</Transaction>
+					);
+				})}
+			</Transactions>
+		);
+	}
+
 	return (
 		<Wrapper>
 			<Header>
@@ -14,17 +39,24 @@ export default function Home() {
 				<RiLogoutBoxRLine id="logout" />
 			</Header>
 			<Main>
-				<Transactions>Não há nenhum transação no momento</Transactions>
+				{transactions.length > 0
+					? showTransactions()
+					: "Não há transações até o momento"}
 			</Main>
 			<Actions>
-				<Action>
-					<AiOutlinePlusCircle id="plus-circle" />
-					<ActionText>Nova Entrada</ActionText>
-				</Action>
-				<Action>
-					<AiOutlineMinusCircle id="minus-circle" />
-					<ActionText>Nova Saída</ActionText>
-				</Action>
+				<Link to="/entry" style={{ textDecoration: "none" }}>
+					<Action>
+						<AiOutlinePlusCircle id="plus-circle" />
+						<ActionText>Nova Entrada</ActionText>
+					</Action>
+				</Link>
+
+				<Link to="/exit" style={{ textDecoration: "none" }}>
+					<Action>
+						<AiOutlineMinusCircle id="minus-circle" />
+						<ActionText>Nova Saída</ActionText>
+					</Action>
+				</Link>
 			</Actions>
 		</Wrapper>
 	);
@@ -39,26 +71,6 @@ const Wrapper = styled.div`
 	align-items: center;
 `;
 
-const Header = styled.header`
-	width: 90%;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-
-	h1 {
-		font-style: normal;
-		font-weight: 700;
-		font-size: 26px;
-		line-height: 31px;
-		color: #ffffff;
-	}
-
-	#logout {
-		font-size: 24px;
-		color: #ffffff;
-	}
-`;
-
 const Main = styled.main`
 	width: 90%;
 	height: 446px;
@@ -70,16 +82,23 @@ const Main = styled.main`
 `;
 
 const Transactions = styled.div`
-	width: 90%;
+	width: 100%;
 	display: flex;
 	flex-direction: column;
-	gap: 10px;
-
+	align-items: center;
 	div {
 		display: flex;
-		gap: 5px;
+		gap: 10px;
 	}
 `;
+
+const Transaction = styled.div`
+	width: 95%;
+	display: flex;
+	justify-content: space-between;
+	margin-top: 20px;
+`;
+
 const TransactionName = styled.span`
 	font-style: normal;
 	font-weight: 400;
@@ -142,4 +161,5 @@ const ActionText = styled.span`
 	color: #ffffff;
 	margin-bottom: 9px;
 	margin-left: 9px;
+	text-decoration: none;
 `;
