@@ -3,6 +3,8 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ThreeDots } from "react-loader-spinner";
 import styled from "styled-components";
+//Service
+import { postNewEntry } from "../Utilities/API";
 //Components
 import {
 	Form,
@@ -18,12 +20,36 @@ export default function NewEntry() {
 	});
 	const [isLoading, setIsLoading] = useState(false);
 
+	const navigate = useNavigate();
+	const userInfo = JSON.parse(localStorage.getItem("user"));
+	const config = {
+		headers: {
+			authorization: `Bearer ${userInfo.token}`,
+		},
+	};
+
+	function handleEntry(e) {
+		e.preventDefault();
+		setNewEntry({
+			...newEntry,
+			value: newEntry.value.replace(",", "."),
+		});
+		postNewEntry(config, newEntry)
+			.then((response) => {
+				setIsLoading(false);
+				navigate("/transactions");
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	}
+
 	return (
 		<Wrapper>
 			<Header>
-				<h1>Olá, Fulano!</h1>
+				<h1>Nova Entrada</h1>
 			</Header>
-			<Form>
+			<Form onSubmit={handleEntry}>
 				<Input
 					onChange={(e) => setNewEntry({ ...newEntry, value: e.target.value })}
 					value={newEntry.value}
@@ -42,7 +68,12 @@ export default function NewEntry() {
 					required
 					placeholder="Descrição"
 				></Input>
-				<Button isLoading={isLoading} onClick={() => setIsLoading(true)}>
+				<Button
+					isLoading={isLoading}
+					onClick={() => {
+						setIsLoading(true);
+					}}
+				>
 					{isLoading ? (
 						<ThreeDots color="#fff" height="40" width="40" />
 					) : (

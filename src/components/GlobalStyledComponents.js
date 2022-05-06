@@ -29,6 +29,9 @@ const Input = styled.input`
 
 const Button = styled.button`
 	pointer-events: ${(props) => (props.isLoading ? "none" : "auto")};
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	width: 100%;
 	height: 46px;
 	background-color: #a328d6;

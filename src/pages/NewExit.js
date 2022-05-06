@@ -18,10 +18,18 @@ export default function NewExit() {
 	});
 	const [isLoading, setIsLoading] = useState(false);
 
+	const userInfo = JSON.parse(localStorage.getItem("user"));
+
+	const config = {
+		headers: {
+			authorization: `Bearer ${userInfo.token}`,
+		},
+	};
+
 	return (
 		<Wrapper>
 			<Header>
-				<h1>Olá, Fulano!</h1>
+				<h1>Nova saída</h1>
 			</Header>
 			<Form>
 				<Input

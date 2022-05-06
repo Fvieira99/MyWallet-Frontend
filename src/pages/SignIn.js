@@ -12,9 +12,9 @@ import {
 	Span,
 } from "../components/GlobalStyledComponents";
 //Services
-import { postLogin } from "../services/API";
+import { postLogin } from "../Utilities/API";
 
-export default function Login() {
+export default function SignIn() {
 	const [isLoading, setIsLoading] = useState(false);
 	const [loginInfo, setLoginInfo] = useState({
 		email: "",
@@ -25,11 +25,14 @@ export default function Login() {
 
 	function handleLogin(e) {
 		e.preventDefault();
+		localStorage.clear();
 
 		postLogin(loginInfo)
 			.then((response) => {
+				localStorage.setItem("user", JSON.stringify(response.data));
+
 				setIsLoading(false);
-				navigate("/home");
+				navigate("/transactions");
 			})
 			.catch((error) => {
 				setIsLoading(false);
@@ -69,7 +72,7 @@ export default function Login() {
 					)}
 				</Button>
 			</Form>
-			<Link to="/cadastro">
+			<Link to="/signup">
 				<Span isLoading={isLoading}>Primeira vez? Cadastre-se!</Span>
 			</Link>
 		</Wrapper>

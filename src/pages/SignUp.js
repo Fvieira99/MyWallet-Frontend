@@ -12,7 +12,7 @@ import {
 	Span,
 } from "../components/GlobalStyledComponents";
 //Services
-import { postSignUp } from "../services/API";
+import { postSignUp } from "../Utilities/API";
 
 export default function SignUp() {
 	const [isLoading, setIsLoading] = useState(false);
@@ -31,7 +31,7 @@ export default function SignUp() {
 		postSignUp(signUpInfo)
 			.then((response) => {
 				setIsLoading(false);
-				navigate("/home");
+				navigate("/");
 			})
 			.catch((error) => {
 				setIsLoading(true);
@@ -91,7 +91,7 @@ export default function SignUp() {
 					)}
 				</Button>
 			</Form>
-			<Link to="/cadastro">
+			<Link to="/signin">
 				<Span isLoading={isLoading}>Primeira vez? Cadastre-se!</Span>
 			</Link>
 		</Wrapper>

@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import { createGlobalStyle } from "styled-components";
 //Pages
-import Login from "../pages/Login";
+import Login from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
 import Home from "../pages/Home";
 import NewExit from "../pages/NewExit";
@@ -14,10 +14,10 @@ function App() {
 			<GlobalStyle />
 			<Routes>
 				<Route path="/" element={<Login />}></Route>
-				<Route path="/cadastro" element={<SignUp />}></Route>
-				<Route path="/home" element={<Home />}></Route>
-				<Route path="/entry" element={<NewEntry />}></Route>
-				<Route path="/exit" element={<NewExit />}></Route>
+				<Route path="/signup" element={<SignUp />}></Route>
+				<Route path="/transactions" element={<Home />}></Route>
+				<Route path="/transaction/entry" element={<NewEntry />}></Route>
+				<Route path="/transaction/exit" element={<NewExit />}></Route>
 			</Routes>
 		</BrowserRouter>
 	);
