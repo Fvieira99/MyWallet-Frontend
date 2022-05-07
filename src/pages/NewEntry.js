@@ -1,8 +1,9 @@
 // Dependencies
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ThreeDots } from "react-loader-spinner";
 import styled from "styled-components";
+import { MdArrowBackIosNew } from "react-icons/md";
 //Service
 import { postNewEntry } from "../Utilities/API";
 //Components
@@ -30,10 +31,6 @@ export default function NewEntry() {
 
 	function handleEntry(e) {
 		e.preventDefault();
-		setNewEntry({
-			...newEntry,
-			value: newEntry.value.replace(",", "."),
-		});
 		postNewEntry(config, newEntry)
 			.then((response) => {
 				setIsLoading(false);
@@ -48,10 +45,19 @@ export default function NewEntry() {
 		<Wrapper>
 			<Header>
 				<h1>Nova Entrada</h1>
+				<MdArrowBackIosNew
+					id="back"
+					onClick={() => navigate("/transactions")}
+				/>
 			</Header>
 			<Form onSubmit={handleEntry}>
 				<Input
-					onChange={(e) => setNewEntry({ ...newEntry, value: e.target.value })}
+					onChange={(e) =>
+						setNewEntry({
+							...newEntry,
+							value: e.target.value.replace(",", "."),
+						})
+					}
 					value={newEntry.value}
 					disabled={isLoading}
 					type="text"

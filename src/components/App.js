@@ -1,11 +1,10 @@
 //Dependencies
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useState } from "react";
 import { createGlobalStyle } from "styled-components";
 //Pages
 import Login from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
-import Home from "../pages/Home";
+import Home from "../pages/transactions/Home";
 import NewExit from "../pages/NewExit";
 import NewEntry from "../pages/NewEntry";
 function App() {

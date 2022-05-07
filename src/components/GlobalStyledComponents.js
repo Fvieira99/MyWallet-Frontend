@@ -84,4 +84,9 @@ const Header = styled.header`
 		font-size: 24px;
 		color: #ffffff;
 	}
+
+	#back {
+		font-size: 24px;
+		color: #ffffff;
+	}
 `;

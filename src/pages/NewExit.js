@@ -1,8 +1,11 @@
 // Dependencies
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ThreeDots } from "react-loader-spinner";
 import styled from "styled-components";
+import { MdArrowBackIosNew } from "react-icons/md";
+//Utilities
+import { postNewExit } from "../Utilities/API";
 //Components
 import {
 	Form,
@@ -18,6 +21,8 @@ export default function NewExit() {
 	});
 	const [isLoading, setIsLoading] = useState(false);
 
+	const navigate = useNavigate();
+
 	const userInfo = JSON.parse(localStorage.getItem("user"));
 
 	const config = {
@@ -26,14 +31,32 @@ export default function NewExit() {
 		},
 	};
 
+	function handleExit(e) {
+		e.preventDefault();
+		postNewExit(config, newExit)
+			.then((response) => {
+				setIsLoading(false);
+				navigate("/transactions");
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	}
+
 	return (
 		<Wrapper>
 			<Header>
 				<h1>Nova saída</h1>
+				<MdArrowBackIosNew
+					id="back"
+					onClick={() => navigate("/transactions")}
+				/>
 			</Header>
-			<Form>
+			<Form onSubmit={handleExit}>
 				<Input
-					onChange={(e) => setNewExit({ ...newExit, value: e.target.value })}
+					onChange={(e) =>
+						setNewExit({ ...newExit, value: e.target.value.replace(",", ".") })
+					}
 					value={newExit.value}
 					disabled={isLoading}
 					type="text"
