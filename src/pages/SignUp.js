@@ -34,8 +34,8 @@ export default function SignUp() {
 				navigate("/");
 			})
 			.catch((error) => {
-				setIsLoading(true);
-				console.log(error);
+				setIsLoading(false);
+				alert(error);
 			});
 	}
 

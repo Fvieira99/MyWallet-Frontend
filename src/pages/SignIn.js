@@ -35,8 +35,11 @@ export default function SignIn() {
 				navigate("/transactions");
 			})
 			.catch((error) => {
+				alert(
+					"Usuário não existe ou os dados foram preenchidos incorretamente."
+				);
 				setIsLoading(false);
-				console.log(error);
+				setLoginInfo({ email: "", password: "" });
 			});
 	}
 

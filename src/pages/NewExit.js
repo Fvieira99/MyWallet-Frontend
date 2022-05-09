@@ -39,7 +39,8 @@ export default function NewExit() {
 				navigate("/transactions");
 			})
 			.catch((error) => {
-				console.log(error);
+				setIsLoading(false);
+				alert(error);
 			});
 	}
 
