@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const URL_BASE = "https://git.heroku.com/projeto13-mywalletdriven.git";
+const URL_BASE = "https://projeto13-mywalletdriven.herokuapp.com/";
 
 export {
 	postLogin,
