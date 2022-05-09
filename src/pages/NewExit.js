@@ -40,7 +40,8 @@ export default function NewExit() {
 			})
 			.catch((error) => {
 				setIsLoading(false);
-				alert(error);
+				console.log(error);
+				alert(error.response.data);
 			});
 	}
 

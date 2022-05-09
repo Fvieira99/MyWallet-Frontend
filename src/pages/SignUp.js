@@ -35,7 +35,8 @@ export default function SignUp() {
 			})
 			.catch((error) => {
 				setIsLoading(false);
-				alert(error);
+				console.log(error.response.data);
+				alert(error.response.data);
 			});
 	}
 

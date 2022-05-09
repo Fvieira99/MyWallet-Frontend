@@ -38,7 +38,8 @@ export default function NewEntry() {
 			})
 			.catch((error) => {
 				setIsLoading(false);
-				alert(error);
+				console.log(error);
+				alert(error.response.data);
 			});
 	}
 
