@@ -91,8 +91,8 @@ export default function SignUp() {
 					)}
 				</Button>
 			</Form>
-			<Link to="/signin">
-				<Span isLoading={isLoading}>Primeira vez? Cadastre-se!</Span>
+			<Link to="/">
+				<Span isLoading={isLoading}>Já tem uma conta? Entre agora!</Span>
 			</Link>
 		</Wrapper>
 	);
