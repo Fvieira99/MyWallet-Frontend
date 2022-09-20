@@ -12,6 +12,7 @@ It is an easy and simple way to organise finances with no stress!
 ## Built With
 
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Styled-Components](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white)
 
 ## Functionalities
 
